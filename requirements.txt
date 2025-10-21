@@ -2,3 +2,4 @@ Pillow
 python-docx
 Flask
 requests
+pandas
