@@ -77,7 +77,7 @@ class CSVIngestor(IngestorInterface):
         return quotes
     
     @classmethod
-    def _find_quote_columns(cls, columns: List[str]) -> tuple[str | None, str | None]:
+    def _find_quote_columns(cls, columns: List[str]) -> tuple[str | None, str | None]:  # type: ignore
         """Find quote and author columns using structural pattern matching.
         
         Uses Python's structural pattern matching to identify the correct
