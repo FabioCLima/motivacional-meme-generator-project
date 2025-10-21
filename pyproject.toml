@@ -1,0 +1,100 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "motivacional-meme-generator"
+version = "1.0.0"
+description = "A motivational meme generator that combines quotes from various file formats with images, demonstrating advanced Python concepts like abstract classes, design patterns, and subprocess module usage."
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.9"
+authors = [
+    {name = "Fabio C. Lima", email = "lima.fisico@gmail.com"},
+]
+keywords = ["meme", "quotes", "image-processing", "flask", "python"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Multimedia :: Graphics",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "pillow>=8.0.0",
+    "python-docx>=0.8.11",
+    "flask>=2.0.0",
+    "requests>=2.25.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.4.2",
+    "pytest-cov>=4.0.0",
+    "black>=22.0.0",
+    "flake8>=4.0.0",
+    "mypy>=0.900",
+]
+test = [
+    "pytest>=8.4.2",
+    "pytest-cov>=4.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/FabioCLima/motivacional-meme-generator-project"
+Repository = "https://github.com/FabioCLima/motivacional-meme-generator-project"
+Documentation = "https://github.com/FabioCLima/motivacional-meme-generator-project#readme"
+"Bug Tracker" = "https://github.com/FabioCLima/motivacional-meme-generator-project/issues"
+
+[project.scripts]
+meme-generator = "motivacional_meme_generator.cli:main"
+meme-web = "motivacional_meme_generator.web:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/motivacional_meme_generator"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/tests",
+    "/README.md",
+    "/LICENSE",
+    "/pyproject.toml",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
